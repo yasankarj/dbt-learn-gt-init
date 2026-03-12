@@ -4,12 +4,23 @@ sources:
     schema: jaffle_shop
     tables:
       - name: customers
+        description: Raw customers data from the jaffle_shop database
         columns:
           - name: id
+            description: The primary key for the customer
             data_tests:
               - not_null
               - unique
       - name: orders
+        description: Raw orders data from the jaffle_shop database
+        columns:
+          - name: id
+            description: The primary key for the order
+            data_tests:
+              - not_null
+              - unique
+          - name: customer_id
+            description: The customer id for the order
         config:
           freshness:
             warn_after:
