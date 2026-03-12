@@ -1,9 +1,11 @@
 with customers as (
     select * from {{ ref ('stg_jaffle_shop__customers')}}
 ),
+
 orders as (
     select * from {{ ref ('fct_orders')}}
 ),
+
 customer_orders as (
     select
         customer_id,
@@ -14,6 +16,7 @@ customer_orders as (
     from orders
     group by 1
 ),
+
  final as (
     select
         customers.customer_id,
@@ -26,4 +29,5 @@ customer_orders as (
     from customers
     left join customer_orders using (customer_id)
 )
+
 select * from final
